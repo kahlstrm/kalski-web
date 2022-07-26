@@ -6,7 +6,7 @@ import Card from "../components/Card.astro";
 <Layout title="Kalski">
 	<main>
 		<h1>Welcome to <span class="text-gradient">kalski.xyz</span></h1>
-		<img class="bb8" src="/bb8.webp" width="100%" />
+		<img class="bb8" src="/bb8.webp" width="100%" alt="roponti <3" title="roponti <3" draggable="false" />
 		<ul role="list" class="link-card-grid">
 			<Card href="https://docs.astro.build/" title="Documentation"
 				body="Learn how Astro works and explore the official API docs." />
@@ -26,8 +26,8 @@ import Card from "../components/Card.astro";
 
 	h1 {
 		margin: 2rem 0;
-		-webkit-animation: scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-		animation: scale-in-ver-top 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+		-webkit-animation: scale-in-ver-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+		animation: scale-in-ver-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	}
 
 	main {
@@ -48,8 +48,12 @@ import Card from "../components/Card.astro";
 	}
 
 	.bb8 {
-		-webkit-animation: scale-in-hor-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-		animation: scale-in-hor-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+		aspect-ratio: 1.5;
+		-webkit-animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+		animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+		-webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent 100%);
+		mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent 100%);
+		mask-composite: ;
 	}
 
 	@keyframes pulse {
@@ -70,38 +74,30 @@ import Card from "../components/Card.astro";
  * See http://animista.net/license for more info. 
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
-	@-webkit-keyframes scale-in-hor-right {
+	@-webkit-keyframes slide-in-right {
 		0% {
-			-webkit-transform: scaleX(0);
-			transform: scaleX(0);
-			-webkit-transform-origin: 100% 100%;
-			transform-origin: 100% 100%;
-			opacity: 1;
+			-webkit-transform: translateX(1000px);
+			transform: translateX(1000px);
+			opacity: 0;
 		}
 
 		100% {
-			-webkit-transform: scaleX(1);
-			transform: scaleX(1);
-			-webkit-transform-origin: 100% 100%;
-			transform-origin: 100% 100%;
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
 			opacity: 1;
 		}
 	}
 
-	@keyframes scale-in-hor-right {
+	@keyframes slide-in-right {
 		0% {
-			-webkit-transform: scaleX(0);
-			transform: scaleX(0);
-			-webkit-transform-origin: 100% 100%;
-			transform-origin: 100% 100%;
-			opacity: 1;
+			-webkit-transform: translateX(1000px);
+			transform: translateX(1000px);
+			opacity: 0;
 		}
 
 		100% {
-			-webkit-transform: scaleX(1);
-			transform: scaleX(1);
-			-webkit-transform-origin: 100% 100%;
-			transform-origin: 100% 100%;
+			-webkit-transform: translateX(0);
+			transform: translateX(0);
 			opacity: 1;
 		}
 	}
