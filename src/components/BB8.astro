@@ -176,7 +176,7 @@
     }
   }
 
-  @keyframes move-across-screen {
+  @-webkit-keyframes move-across-screen-desktop {
     from {
       transform: translateX(70vw);
     }
@@ -184,14 +184,55 @@
     to {
       transform: translateX(-70vw);
     }
+
   }
+
+  @keyframes move-across-screen-desktop {
+    from {
+      transform: translateX(70vw);
+    }
+
+    to {
+      transform: translateX(-70vw);
+    }
+
+  }
+
+  @-webkit-keyframes move-across-screen-mobile {
+    from {
+      transform: translateX(70vw);
+    }
+
+    to {
+      transform: translateX(-70vw);
+    }
+
+  }
+
+  @keyframes move-across-screen-mobile {
+    from {
+      transform: translateX(100vw);
+    }
+
+    to {
+      transform: translateX(-100vw);
+    }
+
+  }
+
 
   .bb-8 {
     position: relative;
-    margin: 50px auto 10px;
+    margin: 50px auto;
     width: 240px;
     height: 326px;
-    animation: move-across-screen 5s linear infinite;
+    animation: move-across-screen-desktop 4s linear infinite;
+  }
+
+  @media(max-width:600px) {
+    .bb-8 {
+      animation: move-across-screen-mobile 2s linear infinite;
+    }
   }
 
   .bb-8__head {
