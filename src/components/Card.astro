@@ -3,8 +3,10 @@ export interface Props {
 	title: string;
 	body: string;
 	href: string;
+	lang: string;
 }
-const { href, title, body } = Astro.props;
+import colors from '../colors.json';
+const { href, title, body, lang } = Astro.props as Props;
 ---
 
 <li class="link-card">
@@ -16,6 +18,7 @@ const { href, title, body } = Astro.props;
 		<p>
 			{body}
 		</p>
+		<span class="lang" style={colors[lang]!==undefined?`color:${colors[lang].color}`:""}>● {lang}</span>
 	</a>
 </li>
 <style>
@@ -23,9 +26,14 @@ const { href, title, body } = Astro.props;
 		--link-gradient: linear-gradient(45deg, #4f39fa, #da62c4 30%, var(--color-border) 60%);
 	}
 
+	.lang::before {
+
+	}
+
 	.link-card {
 		list-style: none;
 		display: flex;
+		position: relative;
 		padding: 0.15rem;
 		background-image: var(--link-gradient);
 		background-size: 400%;

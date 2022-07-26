@@ -3,25 +3,37 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import BB8 from "../components/BB8.astro";
 import Footer from "../components/Footer.astro";
+import repos from '../reposhowcase.json';
+import example from '../example.json';
+type RepoResponse = typeof example[0];
+// fetch github api info of projects
+let responses: RepoResponse[];
+if (import.meta.env.MODE === 'development') {
+	responses = example;
+} else {
+	const reposhowcase = repos
+		.map(n => fetch(`https://api.github.com/repos/${n}`)
+			.then(res => res.ok ? res.json().then(data => data as RepoResponse) : null));
+	responses = await Promise.all(reposhowcase).then(res => res.filter(a => a != null));
+	if (responses.length == 0) {
+		throw new Error("couldn't fetch github repos");
+	}
+}
+
+
 ---
 
 <Layout title="kalski">
 	<main>
 		<h1>Welcome to <span class="text-gradient">kalski.xyz</span></h1>
-
+		<h2>Projects I've done or have worked on:</h2>
 		<ul role="list" class="link-card-grid">
-			<Card href="https://docs.astro.build/" title="Documentation"
-				body="Learn how Astro works and explore the official API docs." />
-			<Card href="https://astro.build/integrations/" title="Integrations"
-				body="Supercharge your project with new frameworks and libraries." />
-			<Card href="https://astro.build/themes/" title="Themes"
-				body="Explore a galaxy of community-built starter themes." />
-			<Card href="https://astro.build/chat/" title="Chat" body="Come say hi to our amazing Discord community. ❤️" />
+			{responses.map(repo=>(
+			<Card body={repo.description} title={repo.name} href={repo.html_url} lang={repo.language} />))}
 		</ul>
-	</main>
-	<div class="bb8container">
+
 		<BB8 />
-	</div>
+	</main>
 	<Footer />
 </Layout>
 
@@ -42,9 +54,6 @@ import Footer from "../components/Footer.astro";
 		max-width: 60ch;
 	}
 
-	.bb8container {
-		overflow: hidden;
-	}
 
 	.text-gradient {
 		font-weight: 900;
