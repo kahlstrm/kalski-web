@@ -4,12 +4,13 @@ export interface Props {
 	body: string;
 	href: string;
 	lang: string;
+	index: number;
 }
 import colors from '../colors.json';
-const { href, title, body, lang } = Astro.props as Props;
+const { href, title, body, lang, index } = Astro.props as Props;
 ---
 
-<li class="link-card">
+<li class="link-card slide-in-bottom" style={`animation-delay:${500+200*index}ms`}>
 	<a href={href}>
 		<h2>
 			{title}
@@ -24,10 +25,6 @@ const { href, title, body, lang } = Astro.props as Props;
 <style>
 	:root {
 		--link-gradient: linear-gradient(45deg, #4f39fa, #da62c4 30%, var(--color-border) 60%);
-	}
-
-	.lang::before {
-
 	}
 
 	.link-card {
@@ -99,6 +96,40 @@ const { href, title, body, lang } = Astro.props as Props;
 			filter: blur(0px);
 			opacity: 1;
 		}
+	}
+
+	@-webkit-keyframes slide-in-bottom {
+		0% {
+			-webkit-transform: translateY(1000px);
+			transform: translateY(1000px);
+			opacity: 0;
+		}
+
+		100% {
+			-webkit-transform: translateY(0);
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+	@keyframes slide-in-bottom {
+		0% {
+			-webkit-transform: translateY(1000px);
+			transform: translateY(1000px);
+			opacity: 0;
+		}
+
+		100% {
+			-webkit-transform: translateY(0);
+			transform: translateY(0);
+			opacity: 1;
+		}
+	}
+
+
+	.slide-in-bottom {
+		-webkit-animation: slide-in-bottom 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+		animation: slide-in-bottom 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	}
 
 

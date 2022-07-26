@@ -3,33 +3,22 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import BB8 from "../components/BB8.astro";
 import Footer from "../components/Footer.astro";
-import repos from '../reposhowcase.json';
-import example from '../example.json';
-type RepoResponse = typeof example[0];
+import example from '../example';
+import { RepoResponse } from "../types";
+import { fetchReposFromApi } from "../util";
 // fetch github api info of projects
-let responses: RepoResponse[];
-if (import.meta.env.MODE === 'development') {
-	responses = example;
-} else {
-	const reposhowcase = repos
-		.map(n => fetch(`https://api.github.com/repos/${n}`)
-			.then(res => res.ok ? res.json().then(data => data as RepoResponse) : null));
-	responses = await Promise.all(reposhowcase).then(res => res.filter(a => a != null));
-	if (responses.length == 0) {
-		throw new Error("couldn't fetch github repos");
-	}
-}
-
+let responses: RepoResponse[] = import.meta.env.MODE === 'development' ?
+	example : await fetchReposFromApi()
 
 ---
 
 <Layout title="kalski">
 	<main>
-		<h1>Welcome to <span class="text-gradient">kalski.xyz</span></h1>
-		<h2>Projects I've done or have worked on:</h2>
+		<h1 class="slide-in-top">Welcome to <span class="text-gradient">kalski.xyz</span></h1>
+		<h2 class="slide-in-right">Here's some cool projects I've made:</h2>
 		<ul role="list" class="link-card-grid">
-			{responses.map(repo=>(
-			<Card body={repo.description} title={repo.name} href={repo.html_url} lang={repo.language} />))}
+			{responses.map((repo,i)=>(
+			<Card body={repo.description} title={repo.name} href={repo.html_url} lang={repo.language} index={i} />))}
 		</ul>
 
 		<BB8 />
@@ -44,8 +33,6 @@ if (import.meta.env.MODE === 'development') {
 
 	h1 {
 		margin: 2rem 0;
-		-webkit-animation: scale-in-ver-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-		animation: scale-in-ver-top 0.7s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	}
 
 	main {
@@ -117,43 +104,38 @@ if (import.meta.env.MODE === 'development') {
 		}
 	}
 
-	@-webkit-keyframes scale-in-ver-top {
+	@-webkit-keyframes slide-in-top {
 		0% {
-			-webkit-transform: scaleY(0);
-			transform: scaleY(0);
-			-webkit-transform-origin: 100% 0%;
-			transform-origin: 100% 0%;
-			opacity: 1;
+			-webkit-transform: translateY(-1000px);
+			transform: translateY(-1000px);
+			opacity: 0;
 		}
 
 		100% {
-			-webkit-transform: scaleY(1);
-			transform: scaleY(1);
-			-webkit-transform-origin: 100% 0%;
-			transform-origin: 100% 0%;
+			-webkit-transform: translateY(0);
+			transform: translateY(0);
 			opacity: 1;
 		}
 	}
 
-	@keyframes scale-in-ver-top {
+	@keyframes slide-in-top {
 		0% {
-			-webkit-transform: scaleY(0);
-			transform: scaleY(0);
-			-webkit-transform-origin: 100% 0%;
-			transform-origin: 100% 0%;
-			opacity: 1;
+			-webkit-transform: translateY(-1000px);
+			transform: translateY(-1000px);
+			opacity: 0;
 		}
 
 		100% {
-			-webkit-transform: scaleY(1);
-			transform: scaleY(1);
-			-webkit-transform-origin: 100% 0%;
-			transform-origin: 100% 0%;
+			-webkit-transform: translateY(0);
+			transform: translateY(0);
 			opacity: 1;
 		}
 	}
 
-
+	.slide-in-top {
+		-webkit-animation: slide-in-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+		animation: slide-in-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	}
 
 	.instructions {
 		line-height: 1.6;
