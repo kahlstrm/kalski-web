@@ -1,11 +1,12 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Card from "../components/Card.astro";
+import Card from "../components/RepoCard.astro";
 import BB8 from "../components/BB8.astro";
 import Footer from "../components/Footer.astro";
 import example from '../example';
 import { RepoResponse } from "../types";
 import { fetchReposFromApi } from "../util";
+import InfoCard from "../components/InfoCard.astro";
 // fetch github api info of projects
 let responses: RepoResponse[] = import.meta.env.MODE === 'development' ?
 	example : await fetchReposFromApi()
@@ -15,7 +16,8 @@ let responses: RepoResponse[] = import.meta.env.MODE === 'development' ?
 <Layout title="kalski">
 	<main>
 		<h1 class="slide-in-top">Welcome to <span class="text-gradient">kalski.xyz</span></h1>
-		<h2 class="slide-in-top">Here's some cool projects I've made:</h2>
+		<InfoCard/>
+		<h2 class="slide-in-bottom" style="animation-delay: 300ms;">Here's some cool projects I've made:</h2>
 		<ul role="list" class="link-card-grid">
 			{responses.map((repo,i)=>(
 			<Card body={repo.description} title={repo.name} href={repo.html_url} lang={repo.language} index={i} />))}
@@ -78,39 +80,6 @@ let responses: RepoResponse[] = import.meta.env.MODE === 'development' ?
  * See http://animista.net/license for more info. 
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
-
-	@-webkit-keyframes slide-in-top {
-		0% {
-			-webkit-transform: translateY(-1000px);
-			transform: translateY(-1000px);
-			opacity: 0;
-		}
-
-		100% {
-			-webkit-transform: translateY(0);
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
-
-	@keyframes slide-in-top {
-		0% {
-			-webkit-transform: translateY(-1000px);
-			transform: translateY(-1000px);
-			opacity: 0;
-		}
-
-		100% {
-			-webkit-transform: translateY(0);
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
-
-	.slide-in-top {
-		-webkit-animation: slide-in-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-		animation: slide-in-top 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-	}
 
 	.instructions {
 		line-height: 1.6;
