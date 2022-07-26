@@ -2,6 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import BB8 from "../components/BB8.astro";
+import Footer from "../components/Footer.astro";
 ---
 
 <Layout title="kalski">
@@ -21,6 +22,7 @@ import BB8 from "../components/BB8.astro";
 	<div class="bb8container">
 		<BB8 />
 	</div>
+	<Footer />
 </Layout>
 
 <style>
@@ -39,9 +41,11 @@ import BB8 from "../components/BB8.astro";
 		padding: 1em;
 		max-width: 60ch;
 	}
-	.bb8container{
+
+	.bb8container {
 		overflow: hidden;
 	}
+
 	.text-gradient {
 		font-weight: 900;
 		background-image: var(--astro-gradient);
