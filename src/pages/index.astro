@@ -17,7 +17,7 @@ let responses: RepoResponse[] = import.meta.env.MODE === 'development' ?
 	<main>
 		<h1 class="slide-in-top">Welcome to <span class="text-gradient">kalski.xyz</span></h1>
 		<InfoCard/>
-		<h2 class="slide-in-bottom" style="animation-delay: 300ms;">Here are some cool projects I've made:</h2>
+		<h2 class="slide-in-bottom" style="animation-delay: 300ms;">Some cool projects I've made:</h2>
 		<ul role="list" class="link-card-grid">
 			{responses.map((repo,i)=>(
 			<Card body={repo.description} title={repo.name} href={repo.html_url} lang={repo.language} index={i} />))}
