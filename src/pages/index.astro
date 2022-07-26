@@ -15,14 +15,16 @@ let responses: RepoResponse[] = import.meta.env.MODE === 'development' ?
 <Layout title="kalski">
 	<main>
 		<h1 class="slide-in-top">Welcome to <span class="text-gradient">kalski.xyz</span></h1>
-		<h2 class="slide-in-right">Here's some cool projects I've made:</h2>
+		<h2 class="slide-in-top">Here's some cool projects I've made:</h2>
 		<ul role="list" class="link-card-grid">
 			{responses.map((repo,i)=>(
 			<Card body={repo.description} title={repo.name} href={repo.html_url} lang={repo.language} index={i} />))}
 		</ul>
 
-		<BB8 />
 	</main>
+	<div class="bb8-container">
+		<BB8 />
+	</div>
 	<Footer />
 </Layout>
 
@@ -39,8 +41,13 @@ let responses: RepoResponse[] = import.meta.env.MODE === 'development' ?
 		margin: auto;
 		padding: 1em;
 		max-width: 60ch;
+		display: flex;
+		flex-direction: column;
 	}
 
+	.bb8-container {
+		overflow-x: hidden;
+	}
 
 	.text-gradient {
 		font-weight: 900;
@@ -51,11 +58,6 @@ let responses: RepoResponse[] = import.meta.env.MODE === 'development' ?
 		background-position-y: 100%;
 		border-radius: 0.4rem;
 		animation: pulse 4s ease-in-out infinite;
-	}
-
-	.slide-in-right {
-		-webkit-animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-		animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 	}
 
 	@keyframes pulse {
@@ -76,33 +78,6 @@ let responses: RepoResponse[] = import.meta.env.MODE === 'development' ?
  * See http://animista.net/license for more info. 
  * w: http://animista.net, t: @cssanimista
  * ---------------------------------------------- */
-	@-webkit-keyframes slide-in-right {
-		0% {
-			-webkit-transform: translateX(1000px);
-			transform: translateX(1000px);
-			opacity: 0;
-		}
-
-		100% {
-			-webkit-transform: translateX(0);
-			transform: translateX(0);
-			opacity: 1;
-		}
-	}
-
-	@keyframes slide-in-right {
-		0% {
-			-webkit-transform: translateX(1000px);
-			transform: translateX(1000px);
-			opacity: 0;
-		}
-
-		100% {
-			-webkit-transform: translateX(0);
-			transform: translateX(0);
-			opacity: 1;
-		}
-	}
 
 	@-webkit-keyframes slide-in-top {
 		0% {
