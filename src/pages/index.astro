@@ -1,12 +1,15 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
+import BB8 from "../components/BB8.astro";
 ---
 
 <Layout title="Kalski">
 	<main>
 		<h1>Welcome to <span class="text-gradient">kalski.xyz</span></h1>
-		<img class="bb8" src="/bb8.webp" width="100%" alt="roponti <3" title="roponti <3" draggable="false" />
+		<a href="https://github.com/jaye-ww/bb-8">
+			<BB8 />
+		</a>
 		<ul role="list" class="link-card-grid">
 			<Card href="https://docs.astro.build/" title="Documentation"
 				body="Learn how Astro works and explore the official API docs." />
@@ -51,8 +54,8 @@ import Card from "../components/Card.astro";
 		aspect-ratio: 1.5;
 		-webkit-animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 		animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-		-webkit-mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent 100%);
-		mask-image: linear-gradient(to right, transparent, black 2%, black 98%, transparent 100%);
+		-webkit-mask-image: linear-gradient(to left, transparent, black 2%, black 98%, transparent 100%);
+		mask-image: linear-gradient(to left, transparent, black 2%, black 98%, transparent 100%);
 		mask-composite: ;
 	}
 
