@@ -7,9 +7,7 @@ import BB8 from "../components/BB8.astro";
 <Layout title="Kalski">
 	<main>
 		<h1>Welcome to <span class="text-gradient">kalski.xyz</span></h1>
-		<a href="https://github.com/jaye-ww/bb-8">
-			<BB8 />
-		</a>
+
 		<ul role="list" class="link-card-grid">
 			<Card href="https://docs.astro.build/" title="Documentation"
 				body="Learn how Astro works and explore the official API docs." />
@@ -20,6 +18,9 @@ import BB8 from "../components/BB8.astro";
 			<Card href="https://astro.build/chat/" title="Chat" body="Come say hi to our amazing Discord community. ❤️" />
 		</ul>
 	</main>
+	<div class="bb8container">
+		<BB8 />
+	</div>
 </Layout>
 
 <style>
@@ -38,7 +39,9 @@ import BB8 from "../components/BB8.astro";
 		padding: 1em;
 		max-width: 60ch;
 	}
-
+	.bb8container{
+		overflow: hidden;
+	}
 	.text-gradient {
 		font-weight: 900;
 		background-image: var(--astro-gradient);
@@ -50,13 +53,9 @@ import BB8 from "../components/BB8.astro";
 		animation: pulse 4s ease-in-out infinite;
 	}
 
-	.bb8 {
-		aspect-ratio: 1.5;
+	.slide-in-right {
 		-webkit-animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
 		animation: slide-in-right 1s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
-		-webkit-mask-image: linear-gradient(to left, transparent, black 2%, black 98%, transparent 100%);
-		mask-image: linear-gradient(to left, transparent, black 2%, black 98%, transparent 100%);
-		mask-composite: ;
 	}
 
 	@keyframes pulse {
