@@ -6,7 +6,8 @@
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
-    "preview": "astro preview"
+    "preview": "astro preview",
+    "fetch-colors": "wget -O src/colors.json https://github.com/ozh/github-colors/raw/master/colors.json"
   },
   "devDependencies": {
     "astro": "^1.0.0-beta.73"
