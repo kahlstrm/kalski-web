@@ -1,0 +1,44 @@
+<div class="socialmedia slide-in-bottom" style="animation-delay: 100ms;">
+  <a href="https://github.com/kqlski"><img class="icon" src="/github.svg" width="50px" /></a>
+  <a href="https://linkedin.com/in/kalleahlstrm/"><img class="icon" src="/linkedin.svg" width="50px" /></a>
+  <a href="https://t.me/kqlski"><img class="icon" src="/telegram.svg" width="50px" /></a>
+  <a href="https://discord.com/users/120488156943351809"><img class="icon" src="/discord.svg" width="50px" /></a>
+</div>
+<style>
+  :root {
+    --some-gradient: linear-gradient(45deg, #4f39fa, #da62c4 30%, transparent 60%);
+  }
+
+  .socialmedia {
+    margin: 1rem auto 0;
+    display: flex;
+    gap: 1rem;
+  }
+
+  a {
+    display: flex;
+    position: relative;
+    padding: 0.15rem;
+    background-image: var(--some-gradient);
+    background-size: 400%;
+    border-radius: 0.5rem;
+    background-position: 100%;
+    transition: background-position 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  img {
+    background-color: ;
+  }
+
+  a:is(:hover, :focus-within) {
+    background-position: 0;
+  }
+
+  a:is(:hover, :focus-within) h2 {
+    color: #4f39fa;
+  }
+
+  a:is(:hover, :focus-within) h2 span {
+    transform: translateX(2px);
+  }
+</style>
