@@ -2,7 +2,7 @@
 
 Made using [Astro](https://astro.build), resulting to a ~20kB gzip size.
 
-## Simple repo CMS
+## Simple Github repository showcase
 
 Adding a github repository's full name to `/src/reposhowcase.json` and pushing will add a showcase card for the repository.
 
