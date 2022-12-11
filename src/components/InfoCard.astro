@@ -4,18 +4,27 @@ const age = new Date().getFullYear() - 2000;
 
 <div class="card slide-in-bottom">
   <h2>Kalle Ahlström</h2>
-  <p>
-  - {age} year-old Computer Science student from Espoo, Finland.
-  </p>
-  <p>
-    - Interested in both bleeding edge and industry standards, leaning towards backend over frontend.
-  </p>
+  <ul>
+    <li>
+      Support Engineer at <a
+        href="https://nitor.com"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img src="/nitor_logo.svg" alt="Nitor" />
+      </a>
+    </li>
+    <li>{age} year-old Computer Science student at Aalto University.</li>
+    <li>
+      Main topics of interest currently: Cloud technologies, CI/CD & backend
+      development
+    </li>
+  </ul>
 </div>
 
 <style>
   .card {
     border-radius: 0.5rem;
-    text-decoration: none;
     line-height: 1.4;
     padding: 1em 1.3em;
     color: var(--text-color);
@@ -24,14 +33,19 @@ const age = new Date().getFullYear() - 2000;
     opacity: 0.8;
   }
 
-
   h2 {
     margin: 0;
     transition: color 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
-
-  p {
+  ul {
+    padding-inline-start: 20px;
+    list-style-type: "-  ";
+  }
+  li {
     margin-top: 0.75rem;
     margin-bottom: 0;
+  }
+  img {
+    height: 3ch;
   }
 </style>
