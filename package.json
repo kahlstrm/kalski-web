@@ -7,9 +7,12 @@
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "fetch-colors": "wget -O src/colors.json https://github.com/ozh/github-colors/raw/master/colors.json"
+    "fetch-colors": "wget -O src/colors.json https://github.com/ozh/github-colors/raw/master/colors.json",
+    "format":"prettier --check src",
+    "format:fix":"prettier --write src"
   },
   "devDependencies": {
-    "astro": "^3.0.2"
+    "astro": "^3.0.2",
+    "prettier": "^3.0.3"
   }
 }
