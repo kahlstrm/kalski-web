@@ -3,15 +3,13 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/RepoCard.astro";
 import BB8 from "../components/BB8.astro";
 import Footer from "../components/Footer.astro";
-import example from '../example.json';
 import { RepoResponse } from "../types";
 import { fetchReposFromApi } from "../util";
 import InfoCard from "../components/InfoCard.astro";
 import Contact from "../components/Contact.astro";
 // fetch github api info of projects
 let repos: RepoResponse[] = import.meta.env.MODE === 'development' ?
-	example : await fetchReposFromApi()
-
+	(await import('../example.json')).default : await fetchReposFromApi()
 ---
 
 <Layout title="Kalle Ahlström">
