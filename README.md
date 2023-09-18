@@ -1,4 +1,4 @@
-# Source Code for [kalski.xyz](https://kalski.xyz)
+# Source Code for [kahlstrm.xyz](https://kahlstrm.xyz)
 
 Made using [Astro](https://astro.build), resulting to a ~20kB gzip size.
 
