@@ -8,93 +8,106 @@ import { fetchReposFromApi } from "../util";
 import InfoCard from "../components/InfoCard.astro";
 import Contact from "../components/Contact.astro";
 // fetch github api info of projects
-let repos: RepoResponse[] = import.meta.env.MODE === 'development' ?
-	(await import('../example.json')).default : await fetchReposFromApi()
+let repos: RepoResponse[] =
+  import.meta.env.MODE === "development"
+    ? (await import("../example.json")).default
+    : await fetchReposFromApi();
 ---
 
 <Layout title="Kalle Ahlström">
-	<main>
-		<h1 class="slide-in-top">Welcome to <span class="text-gradient">kahlstrm.xyz</span></h1>
-		<InfoCard />
-		<Contact />
-		<h2 class="slide-in-bottom" style="animation-delay: 300ms;">Some cool projects I've made/contributed to:</h2>
-		<ul role="list" class="link-card-grid">
-			{repos.map((repo,i)=>(
-			<Card body={repo.description} title={repo.name} href={repo.html_url} lang={repo.language} index={i} />))}
-		</ul>
-
-	</main>
-	<div class="bb8-container">
-		<BB8 />
-	</div>
-	<Footer />
+  <main>
+    <h1 class="slide-in-top">
+      Welcome to <span class="text-gradient">kahlstrm.xyz</span>
+    </h1>
+    <InfoCard />
+    <Contact />
+    <h2 class="slide-in-bottom" style="animation-delay: 300ms;">
+      Some cool projects I've made/contributed to:
+    </h2>
+    <ul role="list" class="link-card-grid">
+      {
+        repos.map((repo, i) => (
+          <Card
+            body={repo.description}
+            title={repo.name}
+            href={repo.html_url}
+            lang={repo.language}
+            index={i}
+          />
+        ))
+      }
+    </ul>
+  </main>
+  <div class="bb8-container">
+    <BB8 />
+  </div>
+  <Footer />
 </Layout>
 
 <style>
-	:root {
-		--astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
-	}
+  :root {
+    --astro-gradient: linear-gradient(0deg, #4f39fa, #da62c4);
+  }
 
-	h1 {
-		margin: 2rem 0;
-	}
+  h1 {
+    margin: 2rem 0;
+  }
 
-	main {
-		margin: auto;
-		padding: 1em;
-		max-width: 70ch;
-		display: flex;
-		flex-direction: column;
-		gap: 0.5rem;
-	}
+  main {
+    margin: auto;
+    padding: 1em;
+    max-width: 70ch;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
-	.bb8-container {
-		overflow-x: hidden;
-	}
+  .bb8-container {
+    overflow-x: hidden;
+  }
 
-	.text-gradient {
-		font-weight: 900;
-		background-image: var(--astro-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 100% 200%;
-		background-position-y: 100%;
-		border-radius: 0.4rem;
-		animation: pulse 4s ease-in-out infinite;
-	}
+  .text-gradient {
+    font-weight: 900;
+    background-image: var(--astro-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-size: 100% 200%;
+    background-position-y: 100%;
+    border-radius: 0.4rem;
+    animation: pulse 4s ease-in-out infinite;
+  }
 
-	@keyframes pulse {
+  @keyframes pulse {
+    0%,
+    100% {
+      background-position-y: 0%;
+    }
 
-		0%,
-		100% {
-			background-position-y: 0%;
-		}
+    50% {
+      background-position-y: 80%;
+    }
+  }
 
-		50% {
-			background-position-y: 80%;
-		}
-	}
+  .instructions {
+    line-height: 1.6;
+    margin: 1rem 0;
+    background: #4f39fa;
+    padding: 1rem;
+    border-radius: 0.4rem;
+    color: var(--color-bg);
+  }
 
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		background: #4f39fa;
-		padding: 1rem;
-		border-radius: 0.4rem;
-		color: var(--color-bg);
-	}
+  .instructions code {
+    font-size: 0.875em;
+    border: 0.1em solid var(--color-border);
+    border-radius: 4px;
+    padding: 0.15em 0.25em;
+  }
 
-	.instructions code {
-		font-size: 0.875em;
-		border: 0.1em solid var(--color-border);
-		border-radius: 4px;
-		padding: 0.15em 0.25em;
-	}
-
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+  .link-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    gap: 1rem;
+    padding: 0;
+  }
 </style>
