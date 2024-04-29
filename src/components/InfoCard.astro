@@ -1,5 +1,5 @@
 ---
-import { Icon } from "astro-icon";
+import { Icon } from "astro-icon/components";
 const age = new Date().getFullYear() - 2000;
 ---
 
@@ -47,9 +47,9 @@ const age = new Date().getFullYear() - 2000;
     margin-top: 0.75rem;
     margin-bottom: 0;
   }
-  [astro-icon="nitor_logo"] {
+  [data-icon="nitor_logo"] {
     image-rendering: pixelated;
-    height: 3ch;
+    font-size: 2rem;
     vertical-align: -0.05rem;
   }
 </style>

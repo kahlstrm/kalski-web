@@ -1,6 +1,5 @@
 {
-  "name": "@example/basics",
-  "version": "0.0.1",
+  "name": "kalski-web",
   "private": true,
   "scripts": {
     "dev": "astro dev",
@@ -12,8 +11,8 @@
     "format:fix": "prettier --write src --plugin=prettier-plugin-astro"
   },
   "devDependencies": {
-    "astro": "^3.1.0",
-    "astro-icon": "^0.8.1",
+    "astro": "^4.7.0",
+    "astro-icon": "^1.1.0",
     "prettier": "^3.0.3",
     "prettier-plugin-astro": "^0.12.0"
   }
