@@ -1,10 +1,10 @@
 # Source Code for [kahlstrm.xyz](https://kahlstrm.xyz)
 
-Made using [Astro](https://astro.build), resulting to a ~20kB gzip size.
+Made using [Astro](https://astro.build), resulting to a single, ~8kB HTML-file.
 
 ## Simple Github repository showcase
 
-Adding a github repository's full name to `/src/reposhowcase.json` and pushing will add a showcase card for the repository.
+Adding a github repository's full name to `/src/reposhowcase.json` will add a showcase card for the repository.
 
 ### Mentions:
 
