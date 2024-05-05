@@ -18,5 +18,7 @@ jobs:
           cache: "pnpm"
       - name: Install dependencies
         run: pnpm install
+      - name: Format check
+        run: pnpm format
       - name: Build
         run: pnpm build
