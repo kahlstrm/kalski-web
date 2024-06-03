@@ -3,14 +3,15 @@ import Layout from "../layouts/Layout.astro";
 import Card from "../components/RepoCard.astro";
 import BB8 from "../components/BB8.astro";
 import Footer from "../components/Footer.astro";
-import { RepoResponse } from "../types";
 import { fetchReposFromApi } from "../util";
 import InfoCard from "../components/InfoCard.astro";
 import Contact from "../components/Contact.astro";
 // fetch github api info of projects
-let repos: RepoResponse[] =
+let repos =
   import.meta.env.MODE === "development"
-    ? (await import("../example.json")).default
+    ? ((await import("../example.json")).default as Awaited<
+        ReturnType<typeof fetchReposFromApi>
+      >)
     : await fetchReposFromApi();
 ---
 
@@ -26,10 +27,10 @@ let repos: RepoResponse[] =
     </h2>
     <ul role="list" class="link-card-grid">
       {
-        repos.map((repo, i) => (
+        repos.repos.map((repo, i) => (
           <Card
             body={repo.description}
-            title={repo.name}
+            title={repo.owner.login === repos.self ? repo.name : repo.full_name}
             href={repo.html_url}
             lang={repo.language}
             index={i}

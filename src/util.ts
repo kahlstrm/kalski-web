@@ -1,8 +1,8 @@
-import repos from "./reposhowcase.json";
+import repoConfig from "./reposhowcase.json";
 import { RepoResponse } from "./types";
 
 export const fetchReposFromApi = async () => {
-  const reposhowcase = repos.map((n) =>
+  const reposhowcase = repoConfig.repos.map((n) =>
     fetch(`https://api.github.com/repos/${n}`).then((res) =>
       res.ok ? res.json().then((data) => data as RepoResponse) : null,
     ),
@@ -13,5 +13,5 @@ export const fetchReposFromApi = async () => {
   if (responses.length == 0) {
     throw new Error("couldn't fetch github repos");
   }
-  return responses;
+  return { repos: responses, self: repoConfig.self };
 };
