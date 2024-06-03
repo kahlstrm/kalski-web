@@ -1,9 +1,11 @@
 [
+  "tietokilta/web",
+  "tietokilta/infra",
   "kahlstrm/brc-rs",
+  "NitorCreations/nameless-deploy-tools",
   "NitorCreations/vault",
   "kahlstrm/next-shortener",
   "kahlstrm/3D-Visualizer",
-  "kahlstrm/drill-and-practice",
   "kahlstrm/paivabot",
-  "kahlstrm/kalski-web"
+  "kahlstrm/kahlstrm-web"
 ]
