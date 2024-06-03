@@ -3,15 +3,18 @@ import { RepoResponse } from "./types";
 
 export const fetchReposFromApi = async () => {
   const reposhowcase = repoConfig.repos.map((n) =>
-    fetch(`https://api.github.com/repos/${n}`).then((res) =>
-      res.ok ? res.json().then((data) => data as RepoResponse) : null,
-    ),
+    fetch(`https://api.github.com/repos/${n}`).then((res) => {
+      if (!res.ok) {
+        console.error(`Error fetching repo: ${n}`);
+        res.text().then((data) => {
+          throw Error(`Couldn't fetch repo: ${n} - ${data}`);
+        });
+      }
+
+      return res.json().then((data) => data as RepoResponse);
+    }),
   );
-  const responses = await Promise.all(reposhowcase).then((res) =>
-    res.filter((a) => a != null),
-  );
-  if (responses.length == 0) {
-    throw new Error("couldn't fetch github repos");
-  }
+  const responses = await Promise.all(reposhowcase);
+
   return { repos: responses, self: repoConfig.self };
 };
